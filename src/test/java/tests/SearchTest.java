@@ -27,7 +27,7 @@ public void tearDown() {
 	driver.quit();
 }
 
-@Test (enabled=false)
+@Test 
 public void testSearch() {
 	MainPage page = PageFactory.initElements(driver, MainPage.class);
 	page.acceptRodo();
