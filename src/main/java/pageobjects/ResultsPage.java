@@ -6,8 +6,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import utils.Runner;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import java.util.Arrays;
@@ -44,6 +46,7 @@ private final WebDriver driver;
 	 * "n" - newest auctions
 	 */
 	public ResultsPage sortResults(String value) {
+		new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(sortResults));
 		Select sortSelect = new Select (sortResults);
 		sortSelect.selectByValue(value);
 		return this;
@@ -63,7 +66,7 @@ private final WebDriver driver;
 		new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath(xPathZlote)));
 		
 		WebElement priceZlote = driver.findElement(By.xpath(xPathZlote));
-		return numbersFromString(priceZlote.getText());
+		return Runner.numbersFromString(priceZlote.getText());
 		
 	}
 	
@@ -93,14 +96,11 @@ private final WebDriver driver;
 		
 		return sumofprices;
 	}
-	
-	private int numbersFromString (String price) {
-		return Integer.parseInt(price.replaceAll("[^0-9]+", ""));
-	}
+
 	
 	public int getResultsNumber() {
 		new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(resultsNumber));		
-		return numbersFromString(resultsNumber.getText());
+		return Runner.numbersFromString(resultsNumber.getText());
 		
 	}
 }

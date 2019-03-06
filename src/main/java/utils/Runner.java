@@ -47,11 +47,9 @@ public static WebDriver startFirefoxDriver () {
 }
 public static WebDriver startDriver() {
 	String drivertype = System.getProperty("driver");
-	System.out.println(drivertype);
 	if (drivertype != null) {
 		return getDriver(drivertype);
 	}else {
-		System.out.println(getProperty("driver"));
 		return getDriver(getProperty("driver"));
 	}
 	
@@ -73,8 +71,10 @@ public static WebDriver getDriver(String prop) {
 		WebDriverManager.firefoxdriver().setup();
 		return new FirefoxDriver();
 	}
-	
-	
+}	
+	public static int numbersFromString (String price) {
+		return Integer.parseInt(price.replaceAll("[^0-9]+", ""));
+		
 	
 }
 }
